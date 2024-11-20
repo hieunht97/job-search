@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 // import fileUpload from "express-fileupload";
 import connectDB from "./config/connectDB";
+import User from "./routes/user"
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 // app.use(cookieParser());
 // app.use(fileUpload());
+app.use("/user", User);
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 // app.use(morgan(":method :url :status :response-time ms"));
