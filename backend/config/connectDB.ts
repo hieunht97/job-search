@@ -1,12 +1,29 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const connectDB = async () => {
+dotenv.config();
+
+const connectDB = async (): Promise<void> => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI || "");
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
+    const DB_NAME = process.env.DB_NAME;
+    const MONGO_URI =
+      process.env.MONGO_URI || `mongodb://127.0.0.1:27017/${DB_NAME}`;
+
+    if (!DB_NAME) {
+      throw new Error("DB_NAME is not defined in environment variables.");
+    }
+
+    await mongoose.connect(MONGO_URI);
+    console.log(`[INFO]: Successfully connected to database | ${DB_NAME}`);
+  } catch (err) {
+    if (err instanceof Error) {
+      console.error(`[ERROR]: Failed to connect to database | ${err.message}`);
+    } else {
+      console.error(
+        `[ERROR]: Unknown error occurred while connecting to database.`
+      );
+    }
+    throw new Error("Failed to connect to database");
   }
 };
 
