@@ -1,38 +1,38 @@
-import { timeStamp } from "console"
+import { timeStamp } from "console";
 
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const userSchema = new Schema(
+  {
     email: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
     username: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
     password: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
     company: {
-        type: [String]
+      type: [String],
     },
     linkedin: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
     github: {
-        type: String
+      type: String,
     },
     doc: {
-        type: String
-    }
-}, {timeStamp: true}) // attach time when new document was created/ updated
+      type: String,
+    },
+  },
+  { timeStamp: true }
+);
 
-export default mongoose.model("User", userSchema)
-
-
-
+export default mongoose.model("User", userSchema);

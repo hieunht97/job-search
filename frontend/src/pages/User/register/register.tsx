@@ -1,6 +1,6 @@
-interface UserModel {
-  name: string;
-}
+// interface UserModel {
+//   name: string;
+// }
 
 const Register = () => {
   return (

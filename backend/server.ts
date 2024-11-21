@@ -5,7 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 // import fileUpload from "express-fileupload";
 import connectDB from "./config/connectDB";
-import User from "./routes/user"
+import User from "./routes/userRoutes";
 
 dotenv.config();
 
@@ -13,11 +13,9 @@ const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-// app.use(cookieParser());
-// app.use(fileUpload());
-app.use("/user", User);
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
+
 // app.use(morgan(":method :url :status :response-time ms"));
 app.use(
   cors({
@@ -26,6 +24,9 @@ app.use(
     credentials: true, // Allow cookies
   })
 );
+
+// Routes
+app.use("/user", User);
 
 // Base Route
 app.get("/", (req: Request, res: Response) => {
