@@ -12,7 +12,6 @@ const userSchema = new Schema(
     },
     username: {
       type: String,
-      require: true,
     },
     password: {
       type: String,
@@ -23,7 +22,6 @@ const userSchema = new Schema(
     },
     linkedin: {
       type: String,
-      require: true,
     },
     github: {
       type: String,

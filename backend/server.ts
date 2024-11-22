@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 // import fileUpload from "express-fileupload";
 import connectDB from "./config/connectDB";
 import User from "./routes/userRoutes";
+import Auth from "./routes/userAuth";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(
 
 // Routes
 app.use("/user", User);
+app.use("/auth", Auth);
 
 // Base Route
 app.get("/", (req: Request, res: Response) => {
