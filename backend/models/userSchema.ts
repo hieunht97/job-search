@@ -1,6 +1,6 @@
 import { timeStamp } from "console";
 
-const mongoose = require("mongoose");
+import mongoose, { InferSchemaType } from "mongoose";
 
 const Schema = mongoose.Schema;
 
@@ -30,7 +30,8 @@ const userSchema = new Schema(
       type: String,
     },
   },
-  { timeStamp: true }
+  { timestamps: true }
 );
 
 export default mongoose.model("User", userSchema);
+export type UserType = InferSchemaType<typeof userSchema>; // Infer TypeScript type
