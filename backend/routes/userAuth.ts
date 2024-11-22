@@ -66,7 +66,7 @@ router.post("/login", async (req: Request, res: Response): Promise<any> => {
     // check for duplicated email addy
     const user = await User.findOne({email: email})
     if (!user) {
-      return res.status(404).json({error: "Email and password doesn't match"})
+      return res.status(404).json({error: "Email not found"})
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password)
